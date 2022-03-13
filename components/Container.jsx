@@ -1,19 +1,18 @@
 import React from "react";
-import { useColorMode, Flex } from "@chakra-ui/react";
+import { useColorModeValue, Flex } from "@chakra-ui/react";
 
 import Navbar from "./Navbar";
 
 const Container = ({ children }) => {
-  const { colorMode } = useColorMode();
-
-  const color = { light: "black", dark: "white" };
-
-  const bgColor = { light: "white", dark: "brand.dark" };
+  const container = {
+    bg: useColorModeValue("white", "brand.dark"),
+    color: useColorModeValue("black", "white"),
+  };
 
   return (
     <>
       <Navbar />
-      <Flex as="main" justify="center" flexDirection="column" bg={bgColor[colorMode]} color={color[colorMode]} px={[0, 4, 4]} mt={[4, 6, 6]}>
+      <Flex as="main" justify="center" flexDirection="column" bg={container.bg} color={container.color} px={[0, 4, 4]} mt={[4, 6, 6]}>
         {children}
       </Flex>
     </>
